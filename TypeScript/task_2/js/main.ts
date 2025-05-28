@@ -50,24 +50,27 @@ export function createEmployee(salary: number | string): DirectorInterface | Tea
 
 // isDirector type predicate
 export function isDirector(employee: DirectorInterface | TeacherInterface): employee is DirectorInterface {
-    return employee instanceof Director;
+    return (employee as DirectorInterface).workDirectorTasks !== undefined;
 }
 
 // executeWork function
 export function executeWork(employee: DirectorInterface | TeacherInterface): string {
     if (isDirector(employee)) {
         return employee.workDirectorTasks();
+    } else {
+        return employee.workTeacherTasks();
     }
-    return employee.workTeacherTasks();
 }
 
 // String literal type
 type Subjects = 'Math' | 'History';
 
 // Function that uses the literal type
-function teachClass(todayClass: Subjects): string {
+export function teachClass(todayClass: Subjects): string {
     if (todayClass === 'Math') {
         return 'Teaching Math';
+    } else if (todayClass === 'History') {
+        return 'Teaching History';
     }
-    return 'Teaching History';
+    return '';
 }
