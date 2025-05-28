@@ -1,23 +1,17 @@
-interface MajorCredits {
+export interface MajorCredits {
+    _majorCreditBrand: 'void';
     credits: number;
-    __brand: 'MajorCredits';
 }
 
-interface MinorCredits {
+export interface MinorCredits {
+    _minorCreditBrand: 'void';
     credits: number;
-    __brand: 'MinorCredits';
 }
 
-function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): MajorCredits {
-    return {
-        credits: subject1.credits + subject2.credits,
-        __brand: 'MajorCredits'
-    };
+export function sumMajorCredits(subject1: MajorCredits, subject2: MajorCredits): MajorCredits {
+    return { credits: subject1.credits + subject2.credits } as MajorCredits;
 }
 
 function sumMinorCredits(subject1: MinorCredits, subject2: MinorCredits): MinorCredits {
-    return {
-        credits: subject1.credits + subject2.credits,
-        __brand: 'MinorCredits'
-    };
+    return { credits: subject1.credits + subject2.credits } as MinorCredits;
 }
